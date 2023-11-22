@@ -9,9 +9,11 @@ class Piece;
 
 class TextDisplay: public Observer {  // inherits from Observer
   std::vector<std::vector<char>> theDisplay;
+  
+  const int boardSize = 8;
 
  public:
-  TextDisplay(int n);
+  TextDisplay();
 
   void notify(Piece &p) override;
 

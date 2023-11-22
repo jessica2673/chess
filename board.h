@@ -9,7 +9,7 @@
 
 class Board {
     // WHAT IS OUR EQUIVALENT
-  // std::vector<std::vector<Cell>> theGrid;  // The actual grid.
+  std::vector<std::vector<Piece>> theBoard;  // The actual board.
   bool won;        // Grid in winning state
   TextDisplay *td; // The text display.
 
