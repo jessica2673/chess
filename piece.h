@@ -29,9 +29,9 @@ class Piece { // Piece is a Subject
 
     std::vector<Piece> checkAttackingMe();
 
-    virtual bool makeMove(int row, int col);
+    virtual bool makeMove(int row, int col) = 0;
 
-    virtual std::vector<int> checkPossibleMoves();
+    virtual std::vector<int> checkPossibleMoves() = 0;
 
     virtual ~Piece() = 0; // makes the class abstract
 
