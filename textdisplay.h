@@ -14,6 +14,7 @@ class TextDisplay: public Observer {  // inherits from Observer
 
  public:
   TextDisplay();
+  void init();
 
   void notify(Piece *p, int row, int col) override;
   ~TextDisplay();

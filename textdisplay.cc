@@ -55,6 +55,10 @@ TextDisplay::TextDisplay() {
     }
 }
 
+void TextDisplay::init() {
+    
+}
+
 void TextDisplay::notify(Piece *p, int row, int col) {
     if (p == nullptr) {
         int rowParity = row % 2;

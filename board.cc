@@ -118,7 +118,7 @@ bool Board::boardPlayerMove(string origLocation, string newLocation) {
     iss2 >> newCol;
 
     // board[origRow][origCol].checkValidMove(*this, newRow, newCol);
-    placePiece(board[origRow][origCol - 1], newRow, newCol - 1);
+    placePiece(board[origRow][boardSize - origCol], newRow, boardSize - newCol);
     return true;
 }
 
