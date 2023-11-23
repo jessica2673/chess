@@ -41,12 +41,20 @@ TextDisplay::TextDisplay() {
             // if i is even, start with dark
             // if i is odd, start with white
             newRow.emplace_back(curSquare);
+
+            // toggle square
+            if (curSquare == darkSquare) {
+                curSquare = whiteSquare;
+            } else {
+                curSquare = darkSquare;
+            }
         }
         theDisplay.emplace_back(newRow);
     }
 }
 
 void TextDisplay::notify(Piece &p) {
+<<<<<<< HEAD
     if ()
 }
 
