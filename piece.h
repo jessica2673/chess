@@ -27,7 +27,7 @@ class Piece { // Piece is a Subject
 
     void notifyObservers();   // Piece will call this to let observers TextDisplay and GraphicDisplay know that they've moved so that the displays can update accordingly 
 
-    std::vector<Piece> checkAttackingMe;
+    std::vector<Piece> checkAttackingMe();
 
     virtual bool makeMove(int row, int col);
 
