@@ -9,7 +9,7 @@ class Piece;
 
 class Bishop : public Piece { // Concrete Subject
   int row, col;
-
+  PieceType type = PieceType::Bishop;
   // Add other private members if necessary
 
  public:

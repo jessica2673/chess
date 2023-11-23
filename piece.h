@@ -6,36 +6,38 @@
 #include "observer.h"
 
 enum class PieceType {Pawn, Bishop, Knight, Rook, Queen, King, Empty};
+enum class Colour { BLACK, WHITE };
 
 class Piece { // Piece is a Subject
-  // bool isOn = false;
-  std::vector<Observer*> observers;
-  int row, col;
 
-  // Add other private members if necessary
+  public:
+    Piece(PieceType type, Colour colour);  // Default constructor
 
- public:
-  Piece();  // Default constructor
+    int getRow() const; // Returns the value of row.
+    int getCol() const; // Returns the value of col.
+    PieceType getState() const;
+    Colour getColour() const;
 
-  int getRow() const; // Returns the value of row.
-  int getCol() const; // Returns the value of col.
-  PieceType getState() const;
+    // void setCoords(int r, int c);  // Tells me my row and column number. MIGHT NEED THIS!?!?!????????????
 
-  // void setOn();          // Explicitly sets me to on.
-  // void toggle();         // Toggles me between on and off.
-  // void setCoords(int r, int c);  // Tells me my row and column number. MIGHT NEED THIS!?!?!????????????
+    void attach(Observer *o);  // Attaches observers (TextDisplay and GraphicDisplay)
 
-  void attach(Observer *o);  // Attaches observers (TextDisplay and GraphicDisplay)
+    void detach(Observer *o);  // Attaches observers (TextDisplay and GraphicDisplay) DON"T REALLY NEED THIS LOLLLL
 
-  void detach(Observer *o);  // Attaches observers (TextDisplay and GraphicDisplay) DON"T REALLY NEED THIS LOLLLL
+    void notifyObservers();   // Piece will call this to let observers TextDisplay and GraphicDisplay know that they've moved so that the displays can update accordingly 
 
-  void notifyObservers();   // Piece will call this to let observers TextDisplay and GraphicDisplay know that they've moved so that the displays can update accordingly 
+    virtual bool makeMove(int row, int col);
 
+    std::vector<Piece> checkAttackingMe();
+    virtual std::vector<int> checkPossibleMoves() = 0;
 
-  virtual bool makeMove(int row, int col);
+    virtual ~Piece() = 0; // makes the class abstract
 
-
-  virtual ~Piece() = 0; // makes the class abstract
-
+  private:
+    std::vector<Observer*> observers;
+    int row, col;
+    Colour colour;
+    PieceType type;
+ 
 };
 #endif
