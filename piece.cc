@@ -1,6 +1,7 @@
 #include "piece.h"
 
-Piece::Piece(PieceType type, Colour colour);  // Default constructor
+Piece::Piece(PieceType type, Colour colour):
+    type{type}, colour{colour} {} // Default constructor
 
 // Returns the value of row.
 int Piece::getRow() const {
