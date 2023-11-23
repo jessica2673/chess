@@ -23,8 +23,6 @@ class Bishop : public Piece { // Concrete Subject
   int getCol() const; // Returns the value of c.
   */
 
-  void setOn();          // Explicitly sets me to on.
-
   void setCoords(int r, int c);  // Tells me my row and column number.
 
          
