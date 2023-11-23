@@ -2,39 +2,105 @@
 #include "board.h"
 using namespace std;
 
-
-Board::Board() {
-    // default ctor
-}
+Board::Board(): board{}, won{false}, td{} {}
 
 Board::~Board() {
     // dtor
+    for (int r = 0; r < boardSize; ++r) {
+        for (int c = 0; c < boardSize; ++c) {
+            // Call each Piece's dtor and delete the pointer
+            delete board[r][c];
+        }
+    }
+    delete td;
+}
+
+void Board::clearBoard() {
+  // Clear the board.
+  board.clear();
 }
   
-bool Board::isWon() const {
+bool Board::isWon() {
     return isWon;
 }; 
 
 // Sets up an 8x8 chessboard
 void Board::init(){
-    
+    clearBoard();
+    td = new TextDisplay();
+
+    board.resize(boardSize, vector<Piece *>(boardSize));
+    for (int r = 0; r < boardSize; ++r) {
+        board.resize(boardSize);
+        for (int c = 0; c < boardSize; ++c) {
+            // board[r][c] = Piece(); // 
+        }
+    }
+
+    // init all the Pieces here to start the board
 } 
 
 // Places a piece at row, col.
-void Board::placePiece(Piece & p, int row, int col) {
+void Board::placePiece(Piece * p, int row, int col) {
+    delete board[row][col];
+    board[row][col] = p;
+}
 
-} 
+// convertLetterToIndex returns letter corresponding to index or -1 if invalid
+int convertLetterToIndex(string letter) {
+    if (letter == "a") {
+        return 0;
+    } else if (letter == "b") {
+        return 1;
+    } else if (letter == "c") {
+        return 2;
+    } else if (letter == "d") {
+        return 3;
+    } else if (letter == "e") {
+        return 4;
+    } else if (letter == "f") {
+        return 5;
+    } else if (letter == "g") {
+        return 6;
+    } else if (letter == "h") {
+        return 7;
+    } else {
+        return -1; // SHOULD WE USE AN ERROR HERE?
+    }
+}
 
-    // ASK ASK ASK 
-bool Board::makeMove(std::string origLocation, std::string newLocation) {
-    
+bool Board::boardPlayerMove(string origLocation, string newLocation) {
+    string strOrigRow = origLocation.substr(0, 1);
+    int origRow = convertLetterToIndex(strOrigRow);
+
+    if (origRow == -1) {
+        cout << "The original location is invalid. Try again." << endl;
+        return false;
+    }
+
+    istringstream iss{origLocation.substr(1, 2)};
+    int origCol;
+    iss >> origCol;
+
+    string strNewRow = newLocation.substr(0, 1);
+    int newRow = convertLetterToIndex(strNewRow);
+
+    if (newRow == -1) {
+        cout << "The new move location is invalid. Try again." << endl;
+        return false;
+    }
+
+    istringstream iss2{newLocation.substr(1, 2)};
+    int newCol;
+    iss2 >> newCol;
+
+    placePiece(board[origRow][origCol], newRow, newCol);
+    return true;
 }
 
 bool Board::computerMakeMove() {
 
 }
-
-
 
 ostream &operator<<(std::ostream &out, const Board &b) {
     out << *(b.td);
