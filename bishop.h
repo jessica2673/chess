@@ -17,7 +17,7 @@ class Bishop : public Piece { // Concrete Subject
 
   Piece getState() const; // Returns a piece
 
-  bool placePiece(int row, int col) override; 
+  bool placePiece(Board* b , int row, int col) override; 
   /*
   int getRow() const; // Returns the value of r.
   int getCol() const; // Returns the value of c.

@@ -4,6 +4,7 @@
 #include <vector>
 #include "textdisplay.h"
 #include "observer.h"
+#include "board.h"
 
 enum class PieceType {Pawn, Bishop, Knight, Rook, Queen, King, Empty};
 enum class Colour { BLACK, WHITE };
@@ -24,7 +25,7 @@ class Piece { // Piece is a Subject
 
     void notifyObservers();   // Piece will call this to let observers TextDisplay and GraphicDisplay know that they've moved so that the displays can update accordingly 
 
-    virtual bool placePiece(int row, int col) = 0;
+    virtual bool placePiece(Board* b, int row, int col) = 0;
 
     std::vector<Piece> checkAttackingMe();
     virtual std::vector<int> checkPossibleMoves() = 0;
