@@ -6,26 +6,21 @@
 #include "observer.h"
 #include "piece.h"
 class Piece;
+using namespace std;
 
 class Bishop : public Piece { // Concrete Subject
-  int row, col;
   PieceType type = PieceType::Bishop;
   // Add other private members if necessary
 
  public:
-  Bishop();  // Default constructor, COULD CHANGE THIS TO TAKE IN PARAMS LIKE LOCATION (where to put it)
+  Bishop(int row, int col, Colour colour);  // Default constructor, COULD CHANGE THIS TO TAKE IN PARAMS LIKE LOCATION (where to put it)
 
-  Piece getState() const; // Returns a piece
-
-  bool placePiece(Board* b , int row, int col) override; 
+  // Piece getState() const; // Returns a piece
+  bool checkMovementValid(int newRow, int newCol) override;
   /*
   int getRow() const; // Returns the value of r.
   int getCol() const; // Returns the value of c.
   */
-
-  void setOn();          // Explicitly sets me to on.
-
-  void setCoords(int r, int c);  // Tells me my row and column number.
 
          
   

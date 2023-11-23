@@ -1,7 +1,7 @@
 #include "piece.h"
 
-Piece::Piece(PieceType type, Colour colour):
-    type{type}, colour{colour} {} // Default constructor
+Piece::Piece(int row, int col, PieceType type, Colour colour):
+    row{row}, col{col}, type{type}, colour{colour} {} // Default constructor
 
 // Returns the value of row.
 int Piece::getRow() const {
@@ -35,4 +35,9 @@ void Piece::detach(Observer *o) {
 void Piece::notifyObservers() {
     for (auto p: observers) {
 	}
-}   
+}
+
+void Piece::moveMyself(int newRow, int newCol) {
+    row = newRow;
+    col = newCol;
+}

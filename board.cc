@@ -19,6 +19,10 @@ void Board::clearBoard() {
   // Clear the board.
   board.clear();
 }
+
+bool Board::checkValid(int row, int col) {
+    
+}
   
 bool Board::isWon() {
     return isWon;

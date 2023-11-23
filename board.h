@@ -21,6 +21,7 @@ class Board {
   ~Board();
   
   void clearBoard();
+  bool checkValid(int row, int col);
   bool isWon(); // Call to determine if board is in a winning state.
   void init(); // Sets up an 8x8 chessboard
   void placePiece(Piece * p, int r, int c);  // Places a piece at row r, col c to On.
