@@ -55,15 +55,20 @@ TextDisplay::TextDisplay() {
     }
 }
 
-void TextDisplay::notify(Piece &p, int oldRow, int oldCol) {
-    theDisplay[p.getCol()][p.getRow()] == pieceToChar(p.getState());
-    if (p.getColour() == Colour::WHITE) {
-        theDisplay[p.getCol()][p.getRow()] = theDisplay[p.getCol()][p.getRow()] - 32;
+void TextDisplay::notify(Piece *p, int row, int col) {
+    if (p == nullptr) {
+        int rowParity = row % 2;
+        int colParity = col % 2;
+        if (rowParity == colParity) {
+            theDisplay[row][col] == '_';
+        } else {
+            theDisplay[row][col] == ' ';
+        }
+        return;
     }
-    if ((oldRow % 2 == 0 && oldCol % 2 == 0) || (oldRow % 2 == 1 && oldCol % 2 == 1)) {
-        theDisplay[oldRow][oldCol] == ' ';
-    } else {
-        theDisplay[oldRow][oldCol] == '_';
+    theDisplay[row][col] == pieceToChar(p->getState());
+    if (p->getColour() == Colour::WHITE) {
+        theDisplay[row][col] = theDisplay[row][col] - 32;
     }
 
 }
