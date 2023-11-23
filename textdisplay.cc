@@ -34,14 +34,24 @@ char pieceToChar(PieceType p) {
 TextDisplay::TextDisplay() {
     char whiteSquare = ' ';
     char darkSquare = '_';
-    char curSquare = darkSquare;
+    char curSquare = whiteSquare;
 
-    for (int i = 0; i < boardSize; ++i) {
+    for (int r = 0; r < boardSize - 2; ++r) {
+        theDisplay[r][0] = boardSize - 2 - r;
+    }
+    
+    char currLetter = 'a';
+    for (int c = 2; c < boardSize; ++c) {
+        theDisplay[boardSize - 1][c] = currLetter;
+        currLetter++;
+    }
+
+    for (int r = 2; r < boardSize; ++r) {
         std::vector<char> newRow;
-        for (int j = 0; j < boardSize; ++j) {
+        for (int c = 0; c < boardSize - 2; ++c) {
             // init row
-            // if i is even, start with dark
-            // if i is odd, start with white
+            // if r is even, start with white
+            // if r is odd, start with dark
             newRow.emplace_back(curSquare);
 
             // toggle square
@@ -64,15 +74,15 @@ void TextDisplay::notify(Piece *p, int row, int col) {
         int rowParity = row % 2;
         int colParity = col % 2;
         if (rowParity == colParity) {
-            theDisplay[row][col] == '_';
+            theDisplay[row][col + 2] == '_';
         } else {
-            theDisplay[row][col] == ' ';
+            theDisplay[row][col + 2] == ' ';
         }
         return;
     }
-    theDisplay[row][col] == pieceToChar(p->getState());
+    theDisplay[row][col + 2] == pieceToChar(p->getState());
     if (p->getColour() == Colour::WHITE) {
-        theDisplay[row][col] = theDisplay[row][col] - 32;
+        theDisplay[row][col + 2] = theDisplay[row][col + 2] - 32;
     }
 
 }
@@ -83,9 +93,9 @@ TextDisplay::~TextDisplay() {
 
 ostream &operator<<(std::ostream &out, const TextDisplay &td) {
     int size = td.boardSize;
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
-            out << td.theDisplay[i][j];
+    for (int r = 0; r < size; ++r) {
+        for (int c = 0; c < size; ++c) {
+            out << td.theDisplay[r][c];
         }
     }
     return out;

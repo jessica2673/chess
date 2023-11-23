@@ -10,7 +10,7 @@ class Piece;
 class TextDisplay: public Observer {  // inherits from Observer
   std::vector<std::vector<char>> theDisplay;
   
-  const int boardSize = 8;
+  const int boardSize = 10;
 
  public:
   TextDisplay();

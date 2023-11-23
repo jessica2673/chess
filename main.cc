@@ -5,8 +5,11 @@ using namespace std;
 
 int main() {
   string cmd, aux;
-  Board b;
+  Board * b = new Board();
   int moves = 0; // added
+
+  cout << b << endl;
+
 
   while (true) {
     cin >> cmd;

@@ -2,7 +2,7 @@
 #include "board.h"
 using namespace std;
 
-Board::Board(): board{}, won{false}, td{} {}
+Board::Board(): board{}, won{false}, td{new TextDisplay()} {}
 
 Board::~Board() {
     // dtor
