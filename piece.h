@@ -17,6 +17,8 @@ class Piece { // Piece is a Subject
 
     int getRow() const; // Returns the value of row.
     int getCol() const; // Returns the value of col.
+    void setRow(int r);
+    void setCol(int c);
     PieceType getState() const;
     Colour getColour() const;
 
@@ -26,7 +28,7 @@ class Piece { // Piece is a Subject
 
     void notifyObservers();   // Piece will call this to let observers TextDisplay and GraphicDisplay know that they've moved so that the displays can update accordingly 
 
-    virtual bool checkMovementValid(int newRow, int newCol) = 0;
+    virtual bool checkMovementValid(const Board &b, int newRow, int newCol) = 0;
     void moveMyself(int newRow, int newCol);
 
     std::vector<Piece> checkAttackingMe();

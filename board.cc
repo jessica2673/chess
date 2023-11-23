@@ -20,8 +20,22 @@ void Board::clearBoard() {
   board.clear();
 }
 
-bool Board::checkValid(int row, int col) {
-    
+bool Board::checkValid(int origRow, int origCol, int newRow, int newCol) {
+    if (board[origRow][origCol]->getColour() == board[newRow][newCol]->getColour()) {
+        return false;
+    } if (!(board[origRow][origCol]->checkMovementValid(*this, newRow, newCol))) {
+        return false;
+    }
+    placePiece(board[origRow][origCol], newRow, newCol);
+    return true;
+}
+
+Piece* Board::getPiece(int row, int col) const {
+    return board[row][col];
+}
+
+int Board::getBoardSize() const {
+    return boardSize;
 }
   
 bool Board::isWon() {
@@ -74,6 +88,10 @@ int convertLetterToIndex(string letter) {
 }
 
 bool Board::boardPlayerMove(string origLocation, string newLocation) {
+    if (origLocation == newLocation) {
+        cout << "You're moving to the same spot. Try again." << endl;
+        return false;
+    }
     string strOrigRow = origLocation.substr(0, 1);
     int origRow = convertLetterToIndex(strOrigRow);
 
@@ -99,7 +117,7 @@ bool Board::boardPlayerMove(string origLocation, string newLocation) {
     iss2 >> newCol;
 
     // board[origRow][origCol].checkValidMove(*this, newRow, newCol);
-    placePiece(board[origRow][origCol], newRow, newCol);
+    placePiece(board[origRow][origCol - 1], newRow, newCol - 1);
     return true;
 }
 

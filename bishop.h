@@ -16,7 +16,7 @@ class Bishop : public Piece { // Concrete Subject
   Bishop(int row, int col, Colour colour);  // Default constructor, COULD CHANGE THIS TO TAKE IN PARAMS LIKE LOCATION (where to put it)
 
   // Piece getState() const; // Returns a piece
-  bool checkMovementValid(int newRow, int newCol) override;
+  bool checkMovementValid(const Board &b, int newRow, int newCol) override;
   /*
   int getRow() const; // Returns the value of r.
   int getCol() const; // Returns the value of c.

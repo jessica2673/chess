@@ -13,6 +13,14 @@ int Piece::getCol() const {
     return col;
 } 
 
+void Piece::setRow(int r) {
+    row = r;
+}
+
+void Piece::setCol(int c) {
+    col = c;
+}
+
 PieceType Piece::getState() const {
     return type;
 }
