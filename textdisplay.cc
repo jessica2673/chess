@@ -8,6 +8,9 @@ In this display, capital letters denote white pieces, and lower case letters den
 by a blank space for white squares, and an underscore character for dark squares. The above board also represents the initial
 configuration of the game.
 */
+
+char pieceToChar()
+
 TextDisplay::TextDisplay() {
     char whiteSquare = ' ';
     char darkSquare = '_';
@@ -34,7 +37,11 @@ TextDisplay::~TextDisplay() {
 }
 
 ostream &operator<<(std::ostream &out, const TextDisplay &td) {
-    for (int i = 0; i < )
-
+    int size = td.boardSize;
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            out << td.theDisplay[i][j];
+        }
+    }
     return out;
 }

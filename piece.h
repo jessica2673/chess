@@ -5,6 +5,8 @@
 #include "textdisplay.h"
 #include "observer.h"
 
+enum class PieceType {Pawn, Bishop, Knight, Rook, Queen, King, Empty};
+
 class Piece { // Piece is a Subject
   // bool isOn = false;
   std::vector<Observer*> observers;
@@ -17,6 +19,7 @@ class Piece { // Piece is a Subject
 
   int getRow() const; // Returns the value of row.
   int getCol() const; // Returns the value of col.
+  PieceType getState() const;
 
   // void setOn();          // Explicitly sets me to on.
   // void toggle();         // Toggles me between on and off.
