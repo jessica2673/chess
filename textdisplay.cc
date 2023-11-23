@@ -1,6 +1,8 @@
 #include <iostream>
+#include <string>
 #include "textdisplay.h"
 #include "board.h"
+#include "piece.h"
 using namespace std;
 
 /*
@@ -53,13 +55,21 @@ TextDisplay::TextDisplay() {
     }
 }
 
-void TextDisplay::notify(Piece &p) {
-<<<<<<< HEAD
-    if ()
+void TextDisplay::notify(Piece &p, int oldRow, int oldCol) {
+    theDisplay[p.getCol()][p.getRow()] == pieceToChar(p.getState());
+    if (p.getColour() == Colour::WHITE) {
+        theDisplay[p.getCol()][p.getRow()] = theDisplay[p.getCol()][p.getRow()] - 32;
+    }
+    if ((oldRow % 2 == 0 && oldCol % 2 == 0) || (oldRow % 2 == 1 && oldCol % 2 == 1)) {
+        theDisplay[oldRow][oldCol] == ' ';
+    } else {
+        theDisplay[oldRow][oldCol] == '_';
+    }
+
 }
 
 TextDisplay::~TextDisplay() {
-
+    
 }
 
 ostream &operator<<(std::ostream &out, const TextDisplay &td) {

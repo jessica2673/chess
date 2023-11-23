@@ -15,7 +15,7 @@ class TextDisplay: public Observer {  // inherits from Observer
  public:
   TextDisplay();
 
-  void notify(Piece &p) override;
+  void notify(Piece &p, int oldRow, int oldCol) override;
   ~TextDisplay();
 
   friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
