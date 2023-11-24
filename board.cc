@@ -21,7 +21,9 @@ void Board::clearBoard() {
 }
 
 bool Board::checkValid(int origRow, int origCol, int newRow, int newCol) {
-    if (board[origRow][origCol]->getColour() == board[newRow][newCol]->getColour()) {
+    if (board[origRow][origCol] == nullptr) {
+        return false;
+    } if (board[newRow][newCol] != nullptr && (board[origRow][origCol]->getColour() == board[newRow][newCol]->getColour())) {
         return false;
     } if (!(board[origRow][origCol]->checkMovementValid(*this, newRow, newCol))) {
         return false;
