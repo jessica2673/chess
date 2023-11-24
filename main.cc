@@ -16,20 +16,62 @@ int main() {
     if (!cin) break;  // added
     if (cmd == "game") {
         // write code here
+        // game white-player black-player starts a new game. 
+        // The parameters white-player and black-player can be either human or computer[1-4].
+        string whitePlayer;
+        string blackPlayer;
+        cin >> whitePlayer;
+        cin >> blackPlayer;
+        
+        
     } else if (cmd == "resign") {
       // write code here
+      // concedes the game to your opponent. This is the only way, outside of winning or drawing the game, to end a game.
+      exit(1);
+
     } else if (cmd == "move") {
       // write code here
+      string origLocation;
+      string newLocation;
+      cin >> origLocation;
+      cin >> newLocation;
+      b->boardPlayerMove(origLocation, newLocation);
+
     } else if (cmd == "setup") {
       // write code here
+      /*
+      Upon completion of setup mode, you must verify that the board contains exactly one white king and exactly one black
+      king; that no pawns are on the first or last row of the board; and that neither king is in check. The user cannot leave
+      setup mode until these conditions are satisfied. 
+      */
+      string operation;
 
-      // setup enters setup mode, within which you can set up your own initial board configurations. 
-      // This can only be done when a game is not currently running.
+      cin >> operation;
 
-      // + K e1 places the piece K on the square e1. If a piece is already on that square, it is replaced.
+      string piece;
+      string targetLocation;
+      while (true) {
+        if (operation == "+") {
+          cin >> piece;
+          cin >> targetLocation;
 
-      // e1 removes the piece from the square e1. If there is no piece at that square, take no action.
+          if (piece == "B") { // placing bishop
+            b->createPiece(PieceType::Bishop, targetLocation, Colour::WHITE);
+          } else if (piece == "b") {
+            b->createPiece(PieceType::Bishop, targetLocation, Colour::BLACK);
+          }
+  
+          cout << *b;
 
+        } else if (operation == "-") {
+          cin >> targetLocation;
+          b->removePiece(targetLocation);
+          cout << *b;
+
+        } else if (operation == "done") {
+          break;
+        }
+      }
     }
   }
 }

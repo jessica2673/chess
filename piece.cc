@@ -42,6 +42,7 @@ void Piece::detach(Observer *o) {
 // Piece will call this to let observers TextDisplay and GraphicDisplay know that they've moved so that the displays can update accordingly 
 void Piece::notifyObservers() {
     for (auto p: observers) {
+
 	}
 }
 

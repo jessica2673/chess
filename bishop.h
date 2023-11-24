@@ -17,6 +17,7 @@ class Bishop : public Piece { // Concrete Subject
 
   // Piece getState() const; // Returns a piece
   bool checkMovementValid(const Board &b, int newRow, int newCol) override;
+  void createPiece(Bishop pieceType, string targetLocation, Colour colour) override;
   /*
   int getRow() const; // Returns the value of r.
   int getCol() const; // Returns the value of c.

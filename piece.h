@@ -28,6 +28,7 @@ class Piece { // Piece is a Subject
 
     void notifyObservers();   // Piece will call this to let observers TextDisplay and GraphicDisplay know that they've moved so that the displays can update accordingly 
 
+    
     virtual bool checkMovementValid(const Board &b, int newRow, int newCol) = 0;
     void moveMyself(int newRow, int newCol);
 
