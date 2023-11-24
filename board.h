@@ -27,7 +27,7 @@ class Board {
   int getBoardSize() const;
   bool isWon(); // Call to determine if board is in a winning state.
 
-  void createPiece(PieceType pieceType, string targetLocation, Colour colour);
+  // void createPiece(PieceType pieceType, string targetLocation, Colour colour);
   void placePiece(Piece * p, int r, int c);  // Places a piece at row r, col c
   void removePiece(string location);
 

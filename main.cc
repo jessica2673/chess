@@ -56,9 +56,9 @@ int main() {
           cin >> targetLocation;
 
           if (piece == "B") { // placing bishop
-            b->createPiece(PieceType::Bishop, targetLocation, Colour::WHITE);
+            // b->createPiece(PieceType::Bishop, targetLocation, Colour::WHITE);
           } else if (piece == "b") {
-            b->createPiece(PieceType::Bishop, targetLocation, Colour::BLACK);
+            // b->createPiece(PieceType::Bishop, targetLocation, Colour::BLACK);
           }
   
           cout << *b;

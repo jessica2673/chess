@@ -61,18 +61,18 @@ void Board::init(){
     // init all the Pieces here to start the board
 } 
 
-void createPiece(PieceType pieceType, string targetLocation, Colour colour) {
-    // converting col to int THIS IS DIFF THAN BELOW
-    string strCol = targetLocation.substr(0, 1);
-    int col = convertLetterToIndex(strCol);
+// void createPiece(PieceType pieceType, string targetLocation, Colour colour) {
+//     // converting col to int THIS IS DIFF THAN BELOW
+//     string strCol = targetLocation.substr(0, 1);
+//     int col = convertLetterToIndex(strCol);
 
-    // converting string to int
-    istringstream iss{targetLocation.substr(1, 2)};
-    int row;
-    iss >> row; 
+//     // converting string to int
+//     istringstream iss{targetLocation.substr(1, 2)};
+//     int row;
+//     iss >> row; 
 
     
-}
+// }
 
 // Places a piece at row, col.
 void Board::placePiece(Piece * p, int row, int col) {
@@ -138,7 +138,7 @@ bool Board::boardPlayerMove(string origLocation, string newLocation) {
 }
 
 bool Board::computerMakeMove() {
-
+    return false;
 }
 
 ostream &operator<<(std::ostream &out, const Board &b) {
