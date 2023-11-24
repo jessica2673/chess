@@ -21,6 +21,7 @@ class Board {
   ~Board();
   
   void clearBoard(); // might not need?
+  void init();
   bool checkValid(int origRow, int origCol, int newRow, int newCol);
   Piece* getPiece(int row, int col) const;
   int getBoardSize() const;
