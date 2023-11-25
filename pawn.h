@@ -11,6 +11,8 @@ using namespace std;
 class Pawn : public Piece {
     PieceType type = PieceType::Pawn;
     bool firstMove = true;
+    bool passantEligible = false;
+    bool justPassed = false;
 
 public:
     Pawn(int row, int col, Colour colour);
