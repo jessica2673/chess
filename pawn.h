@@ -15,6 +15,7 @@ class Pawn : public Piece {
     bool justPassed = false;
 
 public:
+    Pawn(Colour colour);
     Pawn(int row, int col, Colour colour);
 
     bool checkMovementValid(const Board &b, int newRow, int newCol);
