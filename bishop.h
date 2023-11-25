@@ -29,4 +29,5 @@ class Bishop : public Piece { // Concrete Subject
   ~Bishop() override;
   
 };
+
 #endif

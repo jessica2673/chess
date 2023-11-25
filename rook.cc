@@ -1,5 +1,8 @@
 #include "rook.h"
 
+Rook::Rook(Colour colour):
+    Piece{colour, PieceType::Rook} {}
+
 Rook::Rook(int row, int col, Colour colour): Piece{row, col, PieceType::Rook, colour} {}
 
 bool Rook::checkMovementValid(const Board &b, int newRow, int newCol) {
@@ -38,6 +41,31 @@ bool Rook::checkMovementValid(const Board &b, int newRow, int newCol) {
     // Moving the piece
     setRow(newRow);
     setCol(newCol);
+    firstMove = false;
+
+    return true;
+}
+
+bool Rook::castleRookRight(const Board &b) {
+    if (!firstMove) {
+        cout << "Not the rook's first move" << endl;
+        return false;
+    }
+
+    // Since validity of castling is checked in King, simply make the move.
+    setCol(getCol() - 2);
+
+    return true;
+}
+
+bool Rook::castleRookLeft(const Board &b) {
+    if (!firstMove) {
+        cout << "Not the rook's first move" << endl;
+        return false;
+    }
+
+    // Since validity of castling is checked in King, simply make the move.
+    setCol(getCol() + 3);
 
     return true;
 }
