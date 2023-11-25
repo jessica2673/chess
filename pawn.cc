@@ -14,6 +14,7 @@ bool Pawn::checkMovementValid(const Board &b, int newRow, int newCol) {
     if (!firstMove) {
         if (rise == 1 && run == 0 && b.getPiece(newRow, newCol) == nullptr) {
             moveMade = true;
+        }
         if (rise == 1 && (run == 1 || run == -1) && b.getPiece(newRow, newCol) != nullptr) {
             moveMade = true;
         }
