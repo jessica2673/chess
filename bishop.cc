@@ -44,3 +44,10 @@ bool Bishop::checkMovementValid(const Board &b, int newRow, int newCol) {
     return true;
 }
 
+// std::vector<int> checkPossibleMoves() {
+//     return std::vector<int> {1, 0};
+// }
+
+Bishop::~Bishop() {
+
+}

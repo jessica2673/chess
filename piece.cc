@@ -36,17 +36,25 @@ void Piece::attach(Observer *o) {
 }  // Attaches observers (TextDisplay and GraphicDisplay)
 
 void Piece::detach(Observer *o) {
-
+    cout << "yas" << endl;
 }  // Attaches observers (TextDisplay and GraphicDisplay) DON"T REALLY NEED THIS LOLLLL
 
 // Piece will call this to let observers TextDisplay and GraphicDisplay know that they've moved so that the displays can update accordingly 
 void Piece::notifyObservers() {
     for (auto p: observers) {
-
+        cout << "yas" << endl;
 	}
 }
 
 void Piece::moveMyself(int newRow, int newCol) {
     row = newRow;
     col = newCol;
+}
+
+// void checkAttackingMe() {
+//     return std::vector<Piece> piece{};
+// }
+
+Piece::~Piece() {
+    
 }

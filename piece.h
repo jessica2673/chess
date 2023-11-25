@@ -5,6 +5,7 @@
 #include "textdisplay.h"
 #include "observer.h"
 #include "board.h"
+//#include "bishop.h"
 using namespace std;
 
 enum class PieceType {Pawn, Bishop, Knight, Rook, Queen, King, Empty};
@@ -32,10 +33,10 @@ class Piece { // Piece is a Subject
     virtual bool checkMovementValid(const Board &b, int newRow, int newCol) = 0;
     void moveMyself(int newRow, int newCol);
 
-    std::vector<Piece> checkAttackingMe();
-    virtual std::vector<int> checkPossibleMoves() = 0;
+    // std::vector<Piece> checkAttackingMe();
+    //virtual std::vector<int> checkPossibleMoves() = 0;
 
-    virtual ~Piece() = 0; // makes the class abstract
+    virtual ~Piece(); // makes the class abstract
 
   private:
     std::vector<Observer*> observers;

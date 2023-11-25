@@ -5,8 +5,9 @@
 #include "textdisplay.h"
 #include "observer.h"
 #include "piece.h"
-class Piece;
 using namespace std;
+//class Piece;
+
 
 class Bishop : public Piece { // Concrete Subject
   PieceType type = PieceType::Bishop;
@@ -17,13 +18,14 @@ class Bishop : public Piece { // Concrete Subject
 
   // Piece getState() const; // Returns a piece
   bool checkMovementValid(const Board &b, int newRow, int newCol) override;
+  //std::vector<int> checkPossibleMoves() override;
   // void createPiece(Bishop pieceType, string targetLocation, Colour colour) override;
   /*
   int getRow() const; // Returns the value of r.
   int getCol() const; // Returns the value of c.
   */
 
-         
+  ~Bishop() override;
   
 };
 #endif
