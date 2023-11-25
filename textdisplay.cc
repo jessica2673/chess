@@ -39,6 +39,7 @@ TextDisplay::TextDisplay() {
     for (int r = 0; r < boardSize; ++r) {
         std::vector<char> newRow;
         for (int c = 0; c < boardSize; ++c) {
+            // Do not add square color to the first 2 columns and last 2 rows
             if (c != 0 && c != 1 && r != 8 && r != 9) {
                 // init row
                 // if r is even, start with white
@@ -60,7 +61,11 @@ TextDisplay::TextDisplay() {
         } else {
             curSquare = darkSquare;
         }
-        newRow.emplace_back('\n');
+
+        // Do not add new line to the last row of the board
+        if (r != boardSize - 1) {
+            newRow.emplace_back('\n');
+        }
         theDisplay.emplace_back(newRow);
     }
 
@@ -94,7 +99,7 @@ void TextDisplay::notify(Piece *p, int row, int col) {
         }
         return;
     }
-    theDisplay[row][col + 2] == pieceToChar(p->getState());
+    theDisplay[row][col + 2] = pieceToChar(p->getState());
     if (p->getColour() == Colour::WHITE) {
         theDisplay[row][col + 2] = theDisplay[row][col + 2] - 32;
     }
