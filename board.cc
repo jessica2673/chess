@@ -60,28 +60,9 @@ void Board::init(){
     }
 
     // init all the Pieces here to start the board
-} 
-
-// void createPiece(PieceType pieceType, string targetLocation, Colour colour) {
-//     // converting col to int THIS IS DIFF THAN BELOW
-//     string strCol = targetLocation.substr(0, 1);
-//     int col = convertLetterToIndex(strCol);
-
-//     // converting string to int
-//     istringstream iss{targetLocation.substr(1, 2)};
-//     int row;
-//     iss >> row; 
-
-    
-// }
-
-// Places a piece at row, col.
-void Board::placePiece(Piece * p, int row, int col) {
-    delete board[row][col];
-    board[row][col] = p;
 }
 
-// convertLetterToIndex returns letter corresponding to index or -1 if invalid
+// convertLetterToIndex returns letter corresponding to index or -1 if invalid.
 int convertLetterToIndex(string letter) {
     if (letter == "a") {
         return 0;
@@ -102,6 +83,26 @@ int convertLetterToIndex(string letter) {
     } else {
         return -1; // SHOULD WE USE AN ERROR HERE?
     }
+}
+
+void Board::placePiece(Piece * p, string location) {
+    // Converting col to int THIS IS DIFF THAN BELOW.
+    string strCol = location.substr(0, 1);
+    int col = convertLetterToIndex(strCol);
+
+    // Converting string to int.
+    istringstream iss{location.substr(1, 2)};
+    int row;
+    iss >> row;
+
+    delete board[row][col];
+    board[row][col] = p;
+}
+
+// Places a piece at row, col.
+void Board::placePiece(Piece * p, int row, int col) {
+    delete board[row][col];
+    board[row][col] = p;
 }
 
 bool Board::boardPlayerMove(string origLocation, string newLocation) {
