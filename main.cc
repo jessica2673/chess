@@ -6,14 +6,9 @@ using namespace std;
 int main() {
   string cmd, aux;
   Board * b = new Board();
-  b->init();
   int moves = 0; // added
 
-<<<<<<< Updated upstream
   cout << *b << endl;
-=======
-  // cout << *b << endl;
->>>>>>> Stashed changes
 
 
   // while (true) {
@@ -70,11 +65,7 @@ int main() {
 
   //       } else if (operation == "-") {
   //         cin >> targetLocation;
-<<<<<<< Updated upstream
-  //         // b->removePiece(targetLocation);
-=======
   //         b->removePiece(targetLocation);
->>>>>>> Stashed changes
   //         cout << *b;
 
   //       } else if (operation == "done") {
