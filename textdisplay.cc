@@ -36,6 +36,7 @@ TextDisplay::TextDisplay() {
     char darkSquare = '_';
     char curSquare = whiteSquare;    
 
+<<<<<<< Updated upstream
     for (int r = 0; r < boardSize; ++r) {
         std::vector<char> newRow;
         for (int c = 0; c < boardSize; ++c) {
@@ -63,11 +64,41 @@ TextDisplay::TextDisplay() {
     // }
     
     // // Fill in the last row with letters
+=======
+    // for (int r = 0; r < boardSize - 2; ++r) {
+    //     theDisplay[r][0] = boardSize - 2 - r;
+    // }
+    
+>>>>>>> Stashed changes
     // char currLetter = 'a';
     // for (int c = 2; c < boardSize; ++c) {
     //     theDisplay[boardSize - 1][c] = currLetter;
     //     currLetter++;
+<<<<<<< Updated upstream
     //     theDisplay[boardSize - 2][c] = ' ';
+=======
+    // }
+    for (int i = 0; i < 3; ++i) {
+      std::vector<char> newRow (9, '_');
+      theDisplay.emplace_back(newRow);
+    }
+    // for (int r = 0; r < 8; ++r) {
+    //     std::vector<char> newRow;
+    //     for (int c = 0; c < boardSize - 2; ++c) {
+    //         // init row
+    //         // if r is even, start with white
+    //         // if r is odd, start with dark
+    //         newRow.emplace_back('_');
+
+    //         // // toggle square
+    //         // if (curSquare == darkSquare) {
+    //         //     curSquare = whiteSquare;
+    //         // } else {
+    //         //     curSquare = darkSquare;
+    //         // }
+    //     }
+    //     theDisplay.emplace_back(newRow);
+>>>>>>> Stashed changes
     // }
 }
 
