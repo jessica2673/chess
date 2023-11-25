@@ -34,30 +34,25 @@ char pieceToChar(PieceType p) {
 TextDisplay::TextDisplay() {
     char whiteSquare = ' ';
     char darkSquare = '_';
-    char curSquare = whiteSquare;
+    char curSquare = whiteSquare;    
 
-    // for (int r = 0; r < boardSize - 2; ++r) {
-    //     theDisplay[r][0] = boardSize - 2 - r;
-    // }
-    
-    // char currLetter = 'a';
-    // for (int c = 2; c < boardSize; ++c) {
-    //     theDisplay[boardSize - 1][c] = currLetter;
-    //     currLetter++;
-    // }
-    for (int r = 0; r < 8; ++r) {
+    for (int r = 0; r < boardSize; ++r) {
         std::vector<char> newRow;
-        for (int c = 0; c < 8; ++c) {
-            // init row
-            // if r is even, start with white
-            // if r is odd, start with dark
-            newRow.emplace_back(curSquare);
+        for (int c = 0; c < boardSize; ++c) {
+            if (c != 0 && c != 1 && r != 8 && r != 9) {
+                // init row
+                // if r is even, start with white
+                // if r is odd, start with dark
+                newRow.emplace_back(curSquare);
 
-            // toggle square
-            if (curSquare == darkSquare) {
-                curSquare = whiteSquare;
+                // toggle square
+                if (curSquare == darkSquare) {
+                    curSquare = whiteSquare;
+                } else {
+                    curSquare = darkSquare;
+                }
             } else {
-                curSquare = darkSquare;
+                newRow.emplace_back(' ');
             }
         }
         if (curSquare == darkSquare) {
@@ -67,6 +62,20 @@ TextDisplay::TextDisplay() {
         }
         newRow.emplace_back('\n');
         theDisplay.emplace_back(newRow);
+    }
+
+    // Fill in the numbers on the left side of the board
+    for (int r = boardSize - 3; r >= 0; --r) {
+        theDisplay[r][0] = char(boardSize - 2 - r + 48);
+        theDisplay[r][1] = ' ';
+    }
+    
+    // Fill in the last row with letters
+    char currLetter = 'a';
+    for (int c = 2; c < boardSize; ++c) {
+        theDisplay[boardSize - 1][c] = currLetter; // the last row in display
+        currLetter++;
+        theDisplay[boardSize - 2][c] = ' '; // the second last row should be spaces
     }
 }
 
@@ -98,8 +107,8 @@ TextDisplay::~TextDisplay() {
 
 ostream &operator<<(std::ostream &out, const TextDisplay &td) {
     int size = td.boardSize;
-    for (int r = 0; r < 8; ++r) {
-        for (int c = 0; c < size; ++c) {
+    for (int r = 0; r < size; ++r) {
+        for (int c = 0; c < size + 1; ++c) {
             out << td.theDisplay[r][c];
         }
     }
