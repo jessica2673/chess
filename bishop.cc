@@ -1,5 +1,8 @@
 #include "bishop.h"
 
+Bishop::Bishop(Colour colour):
+    Piece{colour, PieceType::Bishop} {}
+
 Bishop::Bishop(int row, int col, Colour colour): Piece{row, col, PieceType::Bishop, colour}{}
 
 bool Bishop::checkMovementValid(const Board &b, int newRow, int newCol) {

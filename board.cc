@@ -95,8 +95,11 @@ void Board::placeNewPiece(Piece * p, string location) {
     int row;
     iss >> row;
 
+    p->attach(td);
+
     delete board[row][col];
     board[row][col] = p;
+    p->notifyObservers();
 }
 
 // Places a piece at row, col.

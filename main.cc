@@ -39,6 +39,7 @@ int main() {
     //   b->boardPlayerMove(origLocation, newLocation);
 
     } else if (cmd == "setup") {
+      b->init();
       // write code here
       /*
       Upon completion of setup mode, you must verify that the board contains exactly one white king and exactly one black
@@ -56,35 +57,12 @@ int main() {
           cin >> piece;
           cin >> targetLocation;
 
-          string strCol = targetLocation.substr(0, 1);
-          int col;
-
-          if (strCol == "a") {
-              col = 0;
-          } else if (strCol == "b") {
-              col = 1;
-          } else if (strCol == "c") {
-              col = 2;
-          } else if (strCol == "d") {
-              col = 3;
-          } else if (strCol == "e") {
-              col = 4;
-          } else if (strCol == "f") {
-              col = 5;
-          } else if (strCol == "g") {
-              col = 6;
-          } else {
-              col = 7;
-          }
-          istringstream iss{targetLocation.substr(1, 2)};
-          int row;
-          iss >> row;
-
           if (piece == "B") { // placing bishop
-            Piece * bishop = new Bishop(row, col, Colour::WHITE);
-            // b->placePiece(bishop, row, col);
+            Piece * bishop = new Bishop(Colour::WHITE);
+            b->placeNewPiece(bishop, targetLocation);
           } else if (piece == "b") {
-            Piece * bishop = new Bishop(row, col, Colour::WHITE);
+            Piece * bishop = new Bishop(Colour::BLACK);
+            b->placeNewPiece(bishop, targetLocation);
           }
   
           cout << *b;

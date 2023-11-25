@@ -1,5 +1,8 @@
 #include "piece.h"
 
+Piece::Piece(Colour colour, PieceType type):
+    colour{colour}, type{type} {}
+
 Piece::Piece(int row, int col, PieceType type, Colour colour):
     row{row}, col{col}, type{type}, colour{colour} {} // Default constructor
 
@@ -42,7 +45,7 @@ void Piece::detach(Observer *o) {
 // Piece will call this to let observers TextDisplay and GraphicDisplay know that they've moved so that the displays can update accordingly 
 void Piece::notifyObservers() {
     for (auto p: observers) {
-        cout << "yas" << endl;
+        p->notify(this, getRow(), getCol());
 	}
 }
 

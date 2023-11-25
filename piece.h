@@ -14,6 +14,7 @@ enum class Colour { BLACK, WHITE };
 class Piece { // Piece is a Subject
 
   public:
+    Piece(Colour colour, PieceType type);
     Piece(int row, int col, PieceType type, Colour colour);  // Default constructor
 
     int getRow() const; // Returns the value of row.
