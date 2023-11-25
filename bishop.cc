@@ -6,8 +6,8 @@ Bishop::Bishop(Colour colour):
 Bishop::Bishop(int row, int col, Colour colour): Piece{row, col, PieceType::Bishop, colour}{}
 
 bool Bishop::checkMovementValid(const Board &b, int newRow, int newCol) {
-    int rise = newCol - this->getCol();
-    int run = newRow - this->getRow();
+    int rise = newRow - this->getRow();
+    int run = newCol - this->getCol();
     int boardSize = b.getBoardSize();
 
     if (abs(rise) != abs(run)) {
