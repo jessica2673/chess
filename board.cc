@@ -85,7 +85,7 @@ int convertLetterToIndex(string letter) {
     }
 }
 
-void Board::placePiece(Piece * p, string location) {
+void Board::placeNewPiece(Piece * p, string location) {
     // Converting col to int THIS IS DIFF THAN BELOW.
     string strCol = location.substr(0, 1);
     int col = convertLetterToIndex(strCol);
