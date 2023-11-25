@@ -29,7 +29,8 @@ bool Board::checkValid(int origRow, int origCol, int newRow, int newCol) {
         return false;
     }
     placePiece(board[origRow][origCol], newRow, newCol);
-    td->notify(board[newRow][newCol], origRow, origCol);
+    td->notify(nullptr, origRow, origCol);
+    td->notify(board[newRow][newCol], newRow, newCol);
     return true;
 }
 
