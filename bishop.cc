@@ -41,8 +41,7 @@ bool Bishop::checkMovementValid(const Board &b, int newRow, int newCol) {
     }
 
     // Moving the piece
-    setRow(newRow);
-    setCol(newCol);
+    moveMyself(newRow, newCol);
 
     return true;
 }

@@ -24,8 +24,7 @@ bool Pawn::checkMovementValid(const Board &b, int newRow, int newCol) {
 
     if (moveMade) {
         firstMove = false;
-        setRow(newRow);
-        setCol(newCol);
+        moveMyself(newRow, newCol);
         return true;
     } else {
         return false;
