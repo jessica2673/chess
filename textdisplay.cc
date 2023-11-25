@@ -34,21 +34,11 @@ char pieceToChar(PieceType p) {
 TextDisplay::TextDisplay() {
     char whiteSquare = ' ';
     char darkSquare = '_';
-    char curSquare = whiteSquare;
+    char curSquare = whiteSquare;    
 
-    for (int r = 0; r < boardSize - 2; ++r) {
-        theDisplay[r][0] = boardSize - 2 - r;
-    }
-    
-    char currLetter = 'a';
-    for (int c = 2; c < boardSize; ++c) {
-        theDisplay[boardSize - 1][c] = currLetter;
-        currLetter++;
-    }
-
-    for (int r = 2; r < boardSize; ++r) {
+    for (int r = 0; r < boardSize; ++r) {
         std::vector<char> newRow;
-        for (int c = 0; c < boardSize - 2; ++c) {
+        for (int c = 0; c < boardSize; ++c) {
             // init row
             // if r is even, start with white
             // if r is odd, start with dark
@@ -61,8 +51,24 @@ TextDisplay::TextDisplay() {
                 curSquare = darkSquare;
             }
         }
+        cout << "should print new line";
+        newRow.emplace_back('n');
         theDisplay.emplace_back(newRow);
     }
+
+    // Fill in the numbers on the left side of the board
+    // for (int r = boardSize - 2; r < boardSize; ++r) {
+    //     theDisplay[r][0] = boardSize - 2 - r;
+    //     theDisplay[r][1] = ' ';
+    // }
+    
+    // // Fill in the last row with letters
+    // char currLetter = 'a';
+    // for (int c = 2; c < boardSize; ++c) {
+    //     theDisplay[boardSize - 1][c] = currLetter;
+    //     currLetter++;
+    //     theDisplay[boardSize - 2][c] = ' ';
+    // }
 }
 
 void TextDisplay::init() {

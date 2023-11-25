@@ -42,19 +42,19 @@ int Board::getBoardSize() const {
 }
   
 bool Board::isWon() {
-    return isWon;
+    return won;
 }; 
 
 // Sets up an 8x8 chessboard
 void Board::init(){
-    clearBoard();
+    // clearBoard();
     td = new TextDisplay();
 
     board.resize(boardSize, vector<Piece *>(boardSize));
     for (int r = 0; r < boardSize; ++r) {
         board.resize(boardSize);
         for (int c = 0; c < boardSize; ++c) {
-            // board[r][c] = Piece(); // 
+            board[r][c] = nullptr; // 
         }
     }
 
