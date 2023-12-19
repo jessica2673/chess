@@ -3,53 +3,85 @@
 Bishop::Bishop(Colour colour):
     Piece{colour, PieceType::Bishop} {}
 
-Bishop::Bishop(int row, int col, Colour colour): Piece{row, col, PieceType::Bishop, colour}{}
+bool Bishop::checkMovementValid(Board &b, int newRow, int newCol, bool calledByPlayer) {
+    return checkDiagonal(b, newRow, newCol);
+}
 
-bool Bishop::checkMovementValid(const Board &b, int newRow, int newCol) {
-    int rise = newRow - this->getRow();
-    int run = newCol - this->getCol();
+vector<vector<int>> Bishop::checkPossibleMoves(Board & b) {
+    vector<vector<int>> possibleMoves;
     int boardSize = b.getBoardSize();
 
-    if (abs(rise) != abs(run)) {
-        return false;
+    // Check squares NE of Bishop.
+    int row = getRow() - 1;
+    int col = getCol() + 1;
+    while (row >= 0 && col < boardSize) {
+        Piece * p = b.getPiece(row, col);
+        if (!p) {
+            possibleMoves.emplace_back(vector <int> {row, col});
+        } else if (p->getColour() != getColour()) {
+            possibleMoves.emplace_back(vector <int> {row, col});
+            break;
+        } else {
+            break;
+        }
+        --row;
+        ++col;
     }
 
-    if (rise > 0 && run > 0) {
-        for (int i = 1; i < rise && newRow + i < boardSize && newCol + i < boardSize; ++i) {
-            if (b.getPiece(getRow() + i, getCol() + i) != nullptr) {
-                return false;
-            }
+
+    // Check squares SE of Bishop.
+    row = getRow() + 1;
+    col = getCol() + 1;
+    while (row < boardSize && col < boardSize) {
+        Piece * p = b.getPiece(row, col);
+        if (!p) {
+            possibleMoves.emplace_back(vector <int> {row, col});
+        } else if (p->getColour() != getColour()) {
+            possibleMoves.emplace_back(vector <int> {row, col});
+            break;
+        } else {
+            break;
         }
-    } else if (rise < 0 && run < 0) {
-        for (int i = 1; i < rise && newRow - i > 0 && newCol - i > 0; ++i) {
-            if (b.getPiece(getRow() - i, getCol() - i) != nullptr) {
-                return false;
-            }
-        }
-    } else if (rise < 0 && run > 0) {
-        for (int i = 1; i < rise && newRow - i < 0 && newCol + i > boardSize; ++i) {
-            if (b.getPiece(getRow() - i, getCol() + i) != nullptr) {
-                return false;
-            }
-        }
-    } else {
-        for (int i = 1; i < rise && newRow + i < boardSize && newCol - i > 0; ++i) {
-            if (b.getPiece(getRow() + i, getCol() - i)) {
-                return false;
-            }
-        }
+        ++row;
+        ++col;
     }
 
-    // Moving the piece
-    moveMyself(newRow, newCol);
+    // Check squares SW of Bishop.
+    row = getRow() + 1;
+    col = getCol() - 1;
 
-    return true;
+    while (col >= 0 && row < boardSize) {
+        Piece * p = b.getPiece(row, col);
+        if (!p) {
+            possibleMoves.emplace_back(vector <int> {row, col});
+        } else if (p->getColour() != getColour()) {
+            possibleMoves.emplace_back(vector <int> {row, col});
+            break;
+        } else {
+            break;
+        }
+        ++row;
+        --col;
+    }
+
+    // Check squares NW of Bishop.
+    row = getRow() - 1;
+    col = getCol() - 1;
+    while (col >= 0 && row >= 0) {
+        Piece * p = b.getPiece(row, col);
+        if (!p) {
+            possibleMoves.emplace_back(vector<int>{row, col});
+        } else if (p->getColour() != getColour()) {  // enemy piece
+            possibleMoves.emplace_back(vector <int> {row, col});
+            break;
+        } else {
+            break;
+        }
+        --row;
+        --col;
+    }
+
+    return possibleMoves;
 }
 
-// std::vector<int> checkPossibleMoves() {
-//     return std::vector<int> {1, 0};
-// }
-
-Bishop::~Bishop() {
-
-}
+Bishop::~Bishop() {}

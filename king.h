@@ -5,23 +5,38 @@
 #include "textdisplay.h"
 #include "observer.h"
 #include "piece.h"
-class Piece;
+#include "rook.h"
+#include <map>
+
 using namespace std;
 
-class King : public Piece { // Concrete Subject
+class King : public Piece {
   PieceType type = PieceType::King;
   bool firstMove = true;
-  // Add other private members if necessary
+  bool inCheck = false;
+  bool justCastledRight = false;
+  bool justCastledLeft = false;
 
  public:
-  King(Colour colour);
-  King(int row, int col, Colour colour);  // Default constructor, COULD CHANGE THIS TO TAKE IN PARAMS LIKE LOCATION (where to put it)
+  King(Colour colour); 
 
-  // Piece getState() const; // Returns a piece
-  bool checkMovementValid(const Board &b, int newRow, int newCol) override;
-  // void createPiece(King pieceType, string targetLocation, Colour colour) override;
-  bool castleKingRight(const Board &b); // Call this function if either White or Black is castling on the right
-  bool castleKingLeft(const Board &b); // Call this function if either White or Black is castling on the left
+  bool checkMovementValid(Board &b, int newRow, int newCol, bool calledByPlayer = false) override;
+  vector<vector<int>> checkPossibleMoves(Board &b) override;
+
+  // Return whether or not the King is currently in check.
+  bool isInCheck(const Board &b);
+
+  // Set the King to in check.
+  void setInCheck(bool kingInCheck);
+
+  // Places the King at row, col on the board b.
+  void placePiece(Board & b, int row, int col) override;
+
+  // Check if either the White King or Black King is castling on the right.
+  bool castleKingRight(Board &b);
+  
+  // Check if either the White King or Black King is castling on the left.
+  bool castleKingLeft(Board &b); 
 };
 
 #endif

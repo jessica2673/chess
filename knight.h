@@ -5,18 +5,18 @@
 #include "textdisplay.h"
 #include "observer.h"
 #include "piece.h"
+
 class Piece;
 using namespace std;
 
 class Knight : public Piece {
     PieceType type = PieceType::Knight;
 
-public:
-    Knight(Colour colour);
-    Knight(int row, int col, Colour colour);
+    public:
+        Knight(Colour colour);
 
-    bool checkMovementValid(const Board &b, int newRow, int newCol) override;
-    
+        bool checkMovementValid(Board &b, int newRow, int newCol, bool calledByPlayer = false) override;
+        vector<vector<int>> checkPossibleMoves(Board &b) override;
 };
 
 

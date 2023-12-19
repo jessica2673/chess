@@ -5,29 +5,19 @@
 #include "textdisplay.h"
 #include "observer.h"
 #include "piece.h"
+
 using namespace std;
-//class Piece;
 
+class Bishop : public Piece {
+    PieceType type = PieceType::Bishop;
 
-class Bishop : public Piece { // Concrete Subject
-  PieceType type = PieceType::Bishop;
-  // Add other private members if necessary
+    public:
+        Bishop(Colour colour);
 
- public:
-  Bishop(Colour colour);
-  Bishop(int row, int col, Colour colour);  // Default constructor, COULD CHANGE THIS TO TAKE IN PARAMS LIKE LOCATION (where to put it)
+        bool checkMovementValid(Board &b, int newRow, int newCol, bool calledByPlayer = false) override;
+        vector<vector<int>> checkPossibleMoves(Board &b) override;
 
-  // Piece getState() const; // Returns a piece
-  bool checkMovementValid(const Board &b, int newRow, int newCol) override;
-  //std::vector<int> checkPossibleMoves() override;
-  // void createPiece(Bishop pieceType, string targetLocation, Colour colour) override;
-  /*
-  int getRow() const; // Returns the value of r.
-  int getCol() const; // Returns the value of c.
-  */
-
-  ~Bishop() override;
-  
+        ~Bishop() override;
 };
 
 #endif

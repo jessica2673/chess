@@ -1,7 +1,7 @@
 #ifndef _OBSERVER_H_
 #define _OBSERVER_H_
-class Piece;
 class Board;
+class Piece;
 
 class Observer {
  public:

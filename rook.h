@@ -5,24 +5,24 @@
 #include "textdisplay.h"
 #include "observer.h"
 #include "piece.h"
-// class Piece;
+
 using namespace std;
 
-class Rook : public Piece { // Concrete Subject
-  PieceType type = PieceType::Rook;
-  bool firstMove = true;
-  // Add other private members if necessary
+class Rook : public Piece {
+    PieceType type = PieceType::Rook;
+    bool firstMove = true; // Keep track of whether or not this is the Rook's first move.
 
- public:
-  Rook(Colour colour);
-  Rook(int row, int col, Colour colour);  // Default constructor, COULD CHANGE THIS TO TAKE IN PARAMS LIKE LOCATION (where to put it)
+    public:
+        // Construct a new Rook with colour.
+        Rook(Colour colour);
 
-  // Piece getState() const; // Returns a piece
-  bool checkMovementValid(const Board &b, int newRow, int newCol) override;
-  // void createPiece(Rook pieceType, string targetLocation, Colour colour) override;
-  bool castleRookRight(const Board &b);
-  bool castleRookLeft(const Board &b);
+        bool checkMovementValid(Board &b, int newRow, int newCol, bool calledByPlayer = false) override;
+        void placePiece(Board & b, int row, int col) override;
+        vector<vector<int>> checkPossibleMoves(Board &b) override;
 
+        // Checks whether or not the Rook can castle on the right and left side.
+        bool castleRookRight();
+        bool castleRookLeft();
 };
 
 #endif
